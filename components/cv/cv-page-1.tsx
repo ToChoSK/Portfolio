@@ -3,7 +3,13 @@
 import Image from "next/image"
 import { Mail, Phone, MapPin, Github, Briefcase, GraduationCap, Code, Globe } from "lucide-react"
 
-export function CVPage1() {
+type CVPage1Props = {
+  pdfMode?: boolean
+}
+
+const pdfImage = (name: string) => `/images/pdf/${name}.webp`
+
+export function CVPage1({ pdfMode = false }: CVPage1Props) {
   return (
     <div className="cv-page w-[210mm] h-[297mm] bg-amber-50/50 shadow-2xl print:shadow-none overflow-hidden relative">
       {/* Subtle background pattern */}
@@ -21,11 +27,12 @@ export function CVPage1() {
           <div className="flex justify-center mb-6">
             <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-amber-700/40 shadow-xl">
               <Image
-                src="/images/profile.png"
+                src={pdfMode ? "/images/pdf/profile.jpg" : "/images/profile.png"}
                 alt="Tomáš Chovančák"
                 width={144}
                 height={144}
                 className="object-cover w-full h-full"
+                unoptimized={pdfMode}
               />
             </div>
           </div>
@@ -266,11 +273,12 @@ export function CVPage1() {
               <div className="flex items-center gap-4 p-3 bg-white rounded-lg border border-amber-200">
                 <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
                   <Image
-                    src="/images/muni-logo.png"
+                    src={pdfMode ? pdfImage("muni-logo") : "/images/muni-logo.png"}
                     alt="Masarykova univerzita"
                     width={48}
                     height={48}
                     className="object-contain"
+                    unoptimized={pdfMode}
                   />
                 </div>
                 <div className="flex-1">
@@ -286,11 +294,12 @@ export function CVPage1() {
               <div className="flex items-center gap-4 p-3 bg-white rounded-lg border border-amber-200">
                 <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
                   <Image
-                    src="/images/muni-logo.png"
+                    src={pdfMode ? pdfImage("muni-logo") : "/images/muni-logo.png"}
                     alt="Masarykova univerzita"
                     width={48}
                     height={48}
                     className="object-contain"
+                    unoptimized={pdfMode}
                   />
                 </div>
                 <div className="flex-1">
@@ -304,11 +313,12 @@ export function CVPage1() {
               <div className="flex items-center gap-4 p-3 bg-white rounded-lg border border-amber-200">
                 <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
                   <Image
-                    src="/images/gympos-logo.png"
+                    src={pdfMode ? pdfImage("gympos-logo") : "/images/gympos-logo.png"}
                     alt="Gymnázium Poštová"
                     width={48}
                     height={48}
                     className="object-contain"
+                    unoptimized={pdfMode}
                   />
                 </div>
                 <div className="flex-1">
@@ -322,11 +332,12 @@ export function CVPage1() {
               <div className="flex items-center gap-4 p-3 bg-white rounded-lg border border-amber-200">
                 <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
                   <Image
-                    src="/images/szus-logo.png"
+                    src={pdfMode ? pdfImage("szus-logo") : "/images/szus-logo.png"}
                     alt="ZUŠ Krosnianska"
                     width={48}
                     height={48}
                     className="object-contain"
+                    unoptimized={pdfMode}
                   />
                 </div>
                 <div className="flex-1">

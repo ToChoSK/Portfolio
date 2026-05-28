@@ -17,10 +17,12 @@ export async function GET(request: NextRequest) {
     const page = await browser.newPage()
 
     await page.setViewport({
-      width: 1200,
-      height: 1800,
-      deviceScaleFactor: 2,
+      width: 794,
+      height: 1123,
+      deviceScaleFactor: 1,
     })
+
+    await page.emulateMediaType("print")
 
     await page.goto(url.toString(), {
       waitUntil: ["load", "networkidle2"],

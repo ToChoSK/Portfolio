@@ -3,7 +3,13 @@
 import { ExternalLink, Star, ShoppingCart, Youtube } from "lucide-react"
 import Image from "next/image"
 
-export function CVPage2() {
+type CVPage2Props = {
+  pdfMode?: boolean
+}
+
+const pdfImage = (name: string) => `/images/pdf/${name}.webp`
+
+export function CVPage2({ pdfMode = false }: CVPage2Props) {
   return (
     <div className="cv-page w-[210mm] h-[297mm] bg-amber-50/50 shadow-2xl print:shadow-none overflow-hidden relative">
       {/* Subtle background pattern */}
@@ -35,11 +41,12 @@ export function CVPage2() {
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
                 <Image
-                  src="/images/fluxprism-logo.png"
+                  src={pdfMode ? pdfImage("fluxprism-logo") : "/images/fluxprism-logo.png"}
                   alt="Fluxprism"
                   width={40}
                   height={40}
                   className="rounded-lg"
+                  unoptimized={pdfMode}
                 />
                 <div>
                   <h3 className="text-lg font-bold">Fluxprism</h3>
@@ -70,6 +77,8 @@ export function CVPage2() {
               description="Folklórny projekt pre vyhľadávanie a prezentáciu slovenských ľudových piesní, prepájajúci webovú stránku, Android aplikáciu vydanú na Google Play a YouTube kanál s takmer miliónom pozretí."
               tags={["React Native", "Google Play", "Obsah"]}
               logo="/images/slovenskeludovky-logo.png"
+              pdfLogo={pdfImage("slovenskeludovky-logo")}
+              pdfMode={pdfMode}
             />
             <ProjectCard
               title="Dotykáče"
@@ -77,6 +86,8 @@ export function CVPage2() {
               description="Realizácia projektového nápadu JAMU, interaktívna chatová aplikácia s vetveným dialógom, vizuálnym editorom konverzačných tokov, animáciami a responzívnym používateľským zážitkom."
               tags={["Next.js", "Firestore", "Interaktívne UI"]}
               logo="/images/dotykace-logo.png"
+              pdfLogo={pdfImage("dotykace-logo")}
+              pdfMode={pdfMode}
             />
           </div>
         </div>
@@ -97,6 +108,8 @@ export function CVPage2() {
               href="https://play.google.com/store/apps/details?id=sk.tocho.srandypandy&pcampaignid=web_share"
               description="Flutter aplikácia pre Android zameraná na vtipy" 
               logo="/images/srandypandy-logo.png"
+              pdfLogo={pdfImage("srandypandy-logo")}
+              pdfMode={pdfMode}
             />
             <MiniProjectCard 
               title="akovybavit.eu" 
@@ -104,6 +117,8 @@ export function CVPage2() {
               href="https://akovybavit.eu"
               description="Informačný web s praktickým obsahom" 
               logo="/images/akovybavit-logo.png"
+              pdfLogo={pdfImage("akovybavit-logo")}
+              pdfMode={pdfMode}
             />
             <MiniProjectCard 
               title="Hroby slávnych" 
@@ -111,6 +126,8 @@ export function CVPage2() {
               href="https://hrobyslavnych.sk"
               description="Obsahový web - miesta pochovania slovenských historických osobností"
               logo="/images/hrobyslavnych-logo.png"
+              pdfLogo={pdfImage("hrobyslavnych-logo")}
+              pdfMode={pdfMode}
             />
             <MiniProjectCard 
               title="Šarišský slovník" 
@@ -118,6 +135,8 @@ export function CVPage2() {
               href="https://slovniksaris.eu"
               description="Regionálny slovníkový web" 
               logo="/images/sarisskyslovnik-logo.png"
+              pdfLogo={pdfImage("sarisskyslovnik-logo")}
+              pdfMode={pdfMode}
             />
             <MiniProjectCard 
               title="Gromanka" 
@@ -125,6 +144,8 @@ export function CVPage2() {
               href="https://gromanka.eu"
               description="Prezentačný web OZ"
               logo="/images/gromanka-logo.png"
+              pdfLogo={pdfImage("gromanka-logo")}
+              pdfMode={pdfMode}
             />
             <MiniProjectCard 
               title="YouTube kanál" 
@@ -191,13 +212,17 @@ function ProjectCard({
   url, 
   description, 
   tags, 
-  logo 
+  logo,
+  pdfLogo,
+  pdfMode = false,
 }: { 
   title: string
   url?: string
   description: string
   tags: string[]
   logo: string
+  pdfLogo?: string
+  pdfMode?: boolean
 }) {
   const href = url ? `https://${url}` : undefined
   const content = (
@@ -205,11 +230,12 @@ function ProjectCard({
       <div className="flex items-start justify-between mb-2">
         <div className="w-10 h-10 rounded-lg overflow-hidden bg-amber-50 flex items-center justify-center">
           <Image
-            src={logo}
+            src={pdfMode && pdfLogo ? pdfLogo : logo}
             alt={title}
             width={40}
             height={40}
             className="object-cover"
+            unoptimized={pdfMode}
           />
         </div>
         {url && (
@@ -257,6 +283,8 @@ function MiniProjectCard({
   href,
   description,
   logo,
+  pdfLogo,
+  pdfMode = false,
   icon,
 }: { 
   title: string
@@ -264,6 +292,8 @@ function MiniProjectCard({
   href?: string
   description: string
   logo?: string
+  pdfLogo?: string
+  pdfMode?: boolean
   icon?: "youtube"
 }) {
   const content = (
@@ -273,11 +303,12 @@ function MiniProjectCard({
           <Youtube className="w-7 h-7 text-red-600" />
         ) : (
           <Image
-            src={logo ?? ""}
+            src={pdfMode && pdfLogo ? pdfLogo : logo ?? ""}
             alt={title}
             width={40}
             height={40}
             className="object-cover"
+            unoptimized={pdfMode}
           />
         )}
       </div>
