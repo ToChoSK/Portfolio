@@ -27,7 +27,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
           <div className="flex justify-center mb-6">
             <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-amber-700/40 shadow-xl">
               <Image
-                src={pdfMode ? "/images/pdf/profile.jpg" : "/images/profile.png"}
+                src={pdfMode ? "/images/pdf/profile.jpg" : "/images/profile.jpg"}
                 alt="Tomáš Chovančák"
                 width={144}
                 height={144}
