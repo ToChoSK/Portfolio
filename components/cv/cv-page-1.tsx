@@ -60,9 +60,9 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
                 <Github className="w-4 h-4 text-amber-500" />
                 <span className="text-xs">github.com/ToChoSK</span>
               </a>
-              <a href="https://tomas.chovanak.sk" className="flex items-center gap-3 text-amber-100 hover:text-white transition-colors">
+              <a href="tomas.chovancak.sk" className="flex items-center gap-3 text-amber-100 hover:text-white transition-colors">
                 <Globe className="w-4 h-4 text-amber-500" />
-                <span className="text-xs">tomas.chovanak.sk</span>
+                <span className="text-xs">tomas.chovancak.sk</span>
               </a>
             </div>
           </div>
