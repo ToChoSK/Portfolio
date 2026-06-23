@@ -13,8 +13,8 @@ export default async function Home({ searchParams }: HomeProps) {
   const pdfMode = params?.pdf === "1"
 
   return (
-    <main className="min-h-screen bg-neutral-100 py-8 print:bg-white print:py-0">
-      <div className="flex flex-col items-center gap-8 print:gap-0">
+    <main className="min-h-screen bg-neutral-100 py-4 md:py-8 print:bg-white print:py-0">
+      <div className="flex flex-col items-center gap-4 md:gap-8 print:gap-0">
         <CVPage1 pdfMode={pdfMode} />
         <CVPage2 pdfMode={pdfMode} />
       </div>

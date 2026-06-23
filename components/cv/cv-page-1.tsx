@@ -11,7 +11,7 @@ const pdfImage = (name: string) => `/images/pdf/${name}.webp`
 
 export function CVPage1({ pdfMode = false }: CVPage1Props) {
   return (
-    <div className="cv-page w-[210mm] h-[297mm] bg-amber-50/50 shadow-2xl print:shadow-none overflow-hidden relative">
+    <div className="cv-page w-full md:w-[210mm] md:h-[297mm] bg-amber-50/50 shadow-2xl print:shadow-none overflow-hidden relative print:w-[210mm] print:h-[297mm]">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2378350f' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -20,9 +20,9 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
       {/* Decorative accent */}
       <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700" />
       
-      <div className="flex h-full relative">
+      <div className="flex flex-col md:flex-row h-full relative">
         {/* Left Sidebar */}
-        <div className="w-[75mm] bg-gradient-to-b from-amber-900 to-stone-900 text-white p-6 flex flex-col">
+        <div className="hidden md:flex w-full md:w-[75mm] bg-gradient-to-b from-amber-900 to-stone-900 text-white p-6 flex-col print:flex print:w-[75mm]">
           {/* Profile Photo */}
           <div className="flex justify-center mb-6">
             <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-amber-700/40 shadow-xl">
@@ -178,16 +178,16 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-8 flex flex-col">
-          {/* Header */}
-          <div className="mb-5 pb-5 border-b border-amber-200">
-            <h1 className="text-3xl font-bold text-amber-900 tracking-tight mb-1">
-              ING. TOMÁŠ CHOVANČÁK
-            </h1>
-            <p className="text-sm font-medium text-amber-700">
-              Full-stack vývojár / IT špecialista / kyberbezpečnosť
-            </p>
-          </div>
+        <div className="flex-1 p-4 md:p-8 flex flex-col print:p-8">
+           {/* Header */}
+           <div className="mb-3 md:mb-5 pb-3 md:pb-5 border-b border-amber-200">
+             <h1 className="text-lg md:text-3xl font-bold text-amber-900 tracking-tight mb-1">
+               ING. TOMÁŠ CHOVANČÁK
+             </h1>
+             <p className="text-xs md:text-sm font-medium text-amber-700">
+               Full-stack vývojár / IT špecialista / kyberbezpečnosť
+             </p>
+           </div>
 
           {/* Profile */}
           <div className="mb-5">
