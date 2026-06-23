@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <CVPage1 pdfMode={pdfMode} />
         <CVPage2 pdfMode={pdfMode} />
       </div>
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 print:hidden">
+      <div className="fixed bottom-4 left-1/2 z-50 w-[min(calc(100vw-2rem),17rem)] -translate-x-1/2 sm:left-auto sm:right-4 sm:w-auto sm:translate-x-0 print:hidden">
         <PrintButton />
       </div>
     </main>

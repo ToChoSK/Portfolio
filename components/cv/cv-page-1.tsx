@@ -179,6 +179,19 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
 
         {/* Main Content */}
         <div className="flex-1 p-4 md:p-8 flex flex-col print:p-8">
+           <div className="mb-4 flex justify-center md:hidden print:hidden">
+             <div className="h-24 w-24 overflow-hidden rounded-full bg-amber-100 shadow-lg ring-4 ring-amber-700/20">
+               <Image
+                 src={pdfMode ? "/images/pdf/profile.jpg" : "/images/profile.jpg"}
+                 alt="Tomáš Chovančák"
+                 width={96}
+                 height={96}
+                 className="h-full w-full object-cover"
+                 unoptimized={pdfMode}
+               />
+             </div>
+           </div>
+
            {/* Header */}
            <div className="mb-3 md:mb-5 pb-3 md:pb-5 border-b border-amber-200">
              <h1 className="text-lg md:text-3xl font-bold text-amber-900 tracking-tight mb-1">

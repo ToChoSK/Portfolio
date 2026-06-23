@@ -20,7 +20,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
       {/* Decorative accent */}
       <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700" />
       
-      <div className="p-4 md:p-8 pt-10 pb-20 md:pb-24 relative print:p-8 print:pb-24">
+      <div className="relative p-4 pt-10 pb-7 md:p-8 md:pb-24 print:p-8 print:pb-24">
         {/* Header */}
         <div className="mb-5 pb-4 border-b border-amber-200">
           <h1 className="text-2xl font-bold text-amber-900 tracking-tight">PROJEKTOVÉ PORTFÓLIO</h1>
@@ -194,7 +194,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
          </div>
 
         {/* Footer: text above the divider line. On print we keep absolute positioning at bottom. */}
-        <div className="mt-6 print:mt-0 print:absolute print:bottom-8 print:left-8 print:right-8">
+        <div className="mt-4 md:mt-6 print:mt-0 print:absolute print:bottom-8 print:left-8 print:right-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-[10px] text-stone-400">
             <p className="whitespace-nowrap">
               Ing. Tomáš Chovančák | tchovancak10@gmail.com | +421 917 917 384

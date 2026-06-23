@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server"
 import chromium from "@sparticuz/chromium"
-import puppeteer, { Browser } from "puppeteer-core"
+import puppeteer, { type Browser, type LaunchOptions } from "puppeteer-core"
 import { existsSync } from "node:fs"
 
 export const runtime = "nodejs"
@@ -14,15 +14,19 @@ const localExecutablePaths = [
   "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
 ]
 
+type ChromiumLaunchOptions = typeof chromium & Pick<LaunchOptions, "defaultViewport" | "headless">
+
 async function launchBrowser(): Promise<Browser> {
   const isVercel = Boolean(process.env.VERCEL)
 
   if (isVercel) {
+    const chromiumLaunchOptions = chromium as ChromiumLaunchOptions
+
     return puppeteer.launch({
       args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
+      defaultViewport: chromiumLaunchOptions.defaultViewport,
       executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
+      headless: chromiumLaunchOptions.headless,
     })
   }
 
