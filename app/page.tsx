@@ -1,5 +1,6 @@
 import { CVPage1 } from "@/components/cv/cv-page-1"
 import { CVPage2 } from "@/components/cv/cv-page-2"
+import { CVPage3 } from "@/components/cv/cv-page-3"
 import { PrintButton } from "@/components/cv/print-button"
 
 type HomeProps = {
@@ -17,6 +18,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <div className="flex flex-col items-center gap-4 md:gap-8 print:gap-0">
         <CVPage1 pdfMode={pdfMode} />
         <CVPage2 pdfMode={pdfMode} />
+        <CVPage3 pdfMode={pdfMode} />
       </div>
       <div className="fixed bottom-4 left-1/2 z-50 w-[min(calc(100vw-2rem),17rem)] -translate-x-1/2 sm:left-auto sm:right-4 sm:w-auto sm:translate-x-0 print:hidden">
         <PrintButton />

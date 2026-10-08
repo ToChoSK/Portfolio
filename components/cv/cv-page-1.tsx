@@ -54,13 +54,13 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               </a>
               <div className="flex items-center gap-3 text-amber-100">
                 <MapPin className="w-4 h-4 text-amber-500" />
-                <span className="text-xs">Brno, Česko</span>
+                <span className="text-xs">Košice, Slovensko</span>
               </div>
               <a href="https://github.com/ToChoSK" className="flex items-center gap-3 text-amber-100 hover:text-white transition-colors">
                 <Github className="w-4 h-4 text-amber-500" />
                 <span className="text-xs">github.com/ToChoSK</span>
               </a>
-              <a href="tomas.chovancak.sk" className="flex items-center gap-3 text-amber-100 hover:text-white transition-colors">
+              <a href="https://tomas.chovancak.sk" className="flex items-center gap-3 text-amber-100 hover:text-white transition-colors">
                 <Globe className="w-4 h-4 text-amber-500" />
                 <span className="text-xs">tomas.chovancak.sk</span>
               </a>
@@ -111,7 +111,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-amber-500 mb-1.5">DevOps</p>
                 <div className="flex flex-wrap gap-1.5">
-                  {["Docker", "Git", "GitLab", "CI/CD", "Linux", "Nginx", "systemd", "Vercel", "DNS", "Cloudflare"].map((tech) => (
+                  {["Docker", "Git", "GitLab", "CI/CD", "Linux", "Nginx", "systemd", "Vercel", "DNS", "Cloudflare", "FreeIPA", "SELinux"].map((tech) => (
                     <span key={tech} className="px-2 py-1 bg-stone-800/60 rounded text-[10px]">
                       {tech}
                     </span>
@@ -133,7 +133,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-amber-500 mb-1.5">Ďalšie</p>
                 <div className="flex flex-wrap gap-1.5">
-                  {["Python", "Java", "C#", "Flutter", "React Native"].map((tech) => (
+                  {["Python", "Java", "C#", "Flutter", "React Native", "Expo", "MapLibre GL"].map((tech) => (
                     <span key={tech} className="px-2 py-1 bg-stone-800/60 rounded text-[10px]">
                       {tech}
                     </span>
@@ -211,7 +211,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Profil</h2>
             </div>
             <p className="text-[11px] text-stone-600 leading-relaxed">
-              Full-stack vývojár s praxou v CzechGlobe od 03/2023. Zameriavam sa na interné systémy, REST API, databázové modelovanie, Linux infraštruktúru, používateľské rozhrania a prevádzku produkčných aplikácií. Prepájam vývoj, IT prevádzku a praktické riešenie používateľských požiadaviek.
+              Full-stack vývojár v CzechGlobe (od 03/2023) a doktorand informatiky na UPJŠ v Košiciach. Vyvíjam a prevádzkujem systémy nad meteorologickými dátami – od databázy a API cez web a mobilné aplikácie až po servery a ich bezpečnosť.
             </p>
           </div>
 
@@ -234,10 +234,10 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
                 </div>
                 <p className="text-[10px] font-medium text-amber-700 mb-2">CzechGlobe, Brno</p>
                 <ul className="text-[10px] text-stone-500 space-y-1">
-                  <li>• Vývoj, údržba a prevádzka interných webových aplikácií a firemných systémov.</li>
-                  <li>• Vývoj systému Fluxprism – databázový model, REST API, frontend, používateľské roly, súbory, auditné záznamy.</li>
-                  <li>• Nasadzovanie aplikácií, CI/CD, Rocky Linux, konfigurácia systemd služieb, PostgreSQL.</li>
-                  <li>• Kyberbezpečnostné testovanie s využitím Kali Linux, Burp Suite, Metasploit a postupov penetračného testovania.</li>
+                  <li>• CzechGlobe Mapy – verejný mapový portál počasia a mobilná aplikácia pre Android a iOS: web, mobil, mapový backend aj vydávanie do obchodov.</li>
+                  <li>• Fluxprism a MeteoDBS – informačný systém pre meteostanice a nová databáza meraní.</li>
+                  <li>• Kyberbezpečnosť – odhalenie a forenzná analýza kompromitácií webových serverov, bezpečnostné audity a penetračné testovanie (Kali Linux, Burp Suite, Metasploit).</li>
+                  <li>• Infraštruktúra – FreeIPA, DNS, Rocky Linux, systemd, nginx, PostgreSQL, CI/CD.</li>
                 </ul>
               </div>
 
@@ -281,15 +281,27 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Vzdelanie</h2>
             </div>
             
-            <div className="space-y-3">
+            <div className="space-y-2">
+              {/* UPJS PhD */}
+              <div className="flex items-center gap-4 p-2 bg-white rounded-lg border border-amber-200">
+                <div className="w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
+                  <span className="text-[10px] font-bold tracking-tight text-amber-800">UPJŠ</span>
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs font-bold text-amber-900">PhD. štúdium – Informatika</p>
+                  <p className="text-[10px] text-stone-600">UPJŠ Košice, Ústav informatiky</p>
+                  <p className="text-[10px] text-stone-400">2026 – súčasnosť • neurónové siete, vývoj AiS2, výučba</p>
+                </div>
+              </div>
+
               {/* MUNI Ing */}
-              <div className="flex items-center gap-4 p-3 bg-white rounded-lg border border-amber-200">
-                <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
+              <div className="flex items-center gap-4 p-2 bg-white rounded-lg border border-amber-200">
+                <div className="w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
                   <Image
                     src={pdfMode ? pdfImage("muni-logo") : "/images/muni-logo.png"}
                     alt="Masarykova univerzita"
-                    width={48}
-                    height={48}
+                    width={40}
+                    height={40}
                     className="object-contain"
                     unoptimized={pdfMode}
                   />
@@ -304,13 +316,13 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               </div>
 
               {/* MUNI Bc */}
-              <div className="flex items-center gap-4 p-3 bg-white rounded-lg border border-amber-200">
-                <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
+              <div className="flex items-center gap-4 p-2 bg-white rounded-lg border border-amber-200">
+                <div className="w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
                   <Image
                     src={pdfMode ? pdfImage("muni-logo") : "/images/muni-logo.png"}
                     alt="Masarykova univerzita"
-                    width={48}
-                    height={48}
+                    width={40}
+                    height={40}
                     className="object-contain"
                     unoptimized={pdfMode}
                   />
@@ -323,13 +335,13 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               </div>
 
               {/* Gympos */}
-              <div className="flex items-center gap-4 p-3 bg-white rounded-lg border border-amber-200">
-                <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
+              <div className="flex items-center gap-4 p-2 bg-white rounded-lg border border-amber-200">
+                <div className="w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
                   <Image
                     src={pdfMode ? pdfImage("gympos-logo") : "/images/gympos-logo.png"}
                     alt="Gymnázium Poštová"
-                    width={48}
-                    height={48}
+                    width={40}
+                    height={40}
                     className="object-contain"
                     unoptimized={pdfMode}
                   />
@@ -342,13 +354,13 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               </div>
 
               {/* ZUS */}
-              <div className="flex items-center gap-4 p-3 bg-white rounded-lg border border-amber-200">
-                <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
+              <div className="flex items-center gap-4 p-2 bg-white rounded-lg border border-amber-200">
+                <div className="w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center">
                   <Image
                     src={pdfMode ? pdfImage("szus-logo") : "/images/szus-logo.png"}
                     alt="ZUŠ Krosnianska"
-                    width={48}
-                    height={48}
+                    width={40}
+                    height={40}
                     className="object-contain"
                     unoptimized={pdfMode}
                   />
