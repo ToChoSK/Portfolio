@@ -2,14 +2,16 @@
 
 import Image from "next/image"
 import { Mail, Phone, MapPin, Github, Briefcase, GraduationCap, Code, Globe } from "lucide-react"
+import type { CVContent } from "@/lib/cv/content"
 
 type CVPage1Props = {
+  content: CVContent["page1"]
   pdfMode?: boolean
 }
 
 const pdfImage = (name: string) => `/images/pdf/${name}.webp`
 
-export function CVPage1({ pdfMode = false }: CVPage1Props) {
+export function CVPage1({ content: t, pdfMode = false }: CVPage1Props) {
   return (
     <div className="cv-page w-full md:w-[210mm] md:h-[297mm] bg-amber-50/50 shadow-2xl print:shadow-none overflow-hidden relative print:w-[210mm] print:h-[297mm]">
       {/* Subtle background pattern */}
@@ -41,7 +43,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
           <div className="mb-5">
             <h3 className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-3 flex items-center gap-2">
               <span className="w-8 h-px bg-amber-700" />
-              Kontakt
+              {t.contactTitle}
             </h3>
             <div className="space-y-2.5 text-sm">
               <a href="mailto:tchovancak10@gmail.com" className="flex items-center gap-3 text-amber-100 hover:text-white transition-colors">
@@ -54,7 +56,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               </a>
               <div className="flex items-center gap-3 text-amber-100">
                 <MapPin className="w-4 h-4 text-amber-500" />
-                <span className="text-xs">Košice, Slovensko</span>
+                <span className="text-xs">{t.location}</span>
               </div>
               <a href="https://github.com/ToChoSK" className="flex items-center gap-3 text-amber-100 hover:text-white transition-colors">
                 <Github className="w-4 h-4 text-amber-500" />
@@ -71,12 +73,12 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
           <div className="mb-5">
             <h3 className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-3 flex items-center gap-2">
               <span className="w-8 h-px bg-amber-700" />
-              Technológie
+              {t.technologiesTitle}
             </h3>
             
             <div className="space-y-3">
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-amber-500 mb-1.5">Hlavné</p>
+                <p className="text-[10px] uppercase tracking-wider text-amber-500 mb-1.5">{t.techGroups.main}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {["TypeScript", "React", "Next.js", "Node.js", "PostgreSQL", "Prisma"].map((tech) => (
                     <span key={tech} className="px-2 py-1 bg-amber-800/50 rounded text-[10px] font-medium">
@@ -120,7 +122,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               </div>
 
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-amber-500 mb-1.5">Web nástroje</p>
+                <p className="text-[10px] uppercase tracking-wider text-amber-500 mb-1.5">{t.techGroups.webTools}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {["Google Search Console", "Google Analytics", "Google AdSense"].map((tech) => (
                     <span key={tech} className="px-2 py-1 bg-stone-800/60 rounded text-[10px]">
@@ -131,7 +133,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               </div>
               
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-amber-500 mb-1.5">Ďalšie</p>
+                <p className="text-[10px] uppercase tracking-wider text-amber-500 mb-1.5">{t.techGroups.other}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {["Python", "Java", "C#", "Flutter", "React Native", "Expo", "MapLibre GL"].map((tech) => (
                     <span key={tech} className="px-2 py-1 bg-stone-800/60 rounded text-[10px]">
@@ -147,21 +149,15 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
           <div className="mb-5">
             <h3 className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-3 flex items-center gap-2">
               <span className="w-8 h-px bg-amber-700" />
-              Jazyky
+              {t.languagesTitle}
             </h3>
             <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="text-xs">Slovenčina</span>
-                <span className="text-[10px] text-amber-400">Materinský</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-xs">Angličtina</span>
-                <span className="text-[10px] text-amber-400">B2</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-xs">Ruština</span>
-                <span className="text-[10px] text-amber-400">B2</span>
-              </div>
+              {t.languages.map((language) => (
+                <div key={language.name} className="flex justify-between items-center">
+                  <span className="text-xs">{language.name}</span>
+                  <span className="text-[10px] text-amber-400">{language.level}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -169,10 +165,10 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
           <div className="mt-auto">
             <h3 className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-3 flex items-center gap-2">
               <span className="w-8 h-px bg-amber-700" />
-              Záujmy
+              {t.interestsTitle}
             </h3>
             <p className="text-[10px] text-amber-200 leading-relaxed">
-              Slovenský folklór (tancujem vo FS Poľana), akordeón, klavír, história, geografia, webové projekty a tvorba digitálnych projektov.
+              {t.interests}
             </p>
           </div>
         </div>
@@ -198,7 +194,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
                ING. TOMÁŠ CHOVANČÁK
              </h1>
              <p className="text-xs md:text-sm font-medium text-amber-700">
-               Full-stack vývojár / IT špecialista / kyberbezpečnosť
+               {t.role}
              </p>
            </div>
 
@@ -208,10 +204,10 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               <div className="w-8 h-8 rounded-lg bg-amber-700 flex items-center justify-center">
                 <Code className="w-4 h-4 text-white" />
               </div>
-              <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Profil</h2>
+              <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">{t.profileTitle}</h2>
             </div>
             <p className="text-[11px] text-stone-600 leading-relaxed">
-              Full-stack vývojár v CzechGlobe (od 03/2023) a doktorand informatiky na UPJŠ v Košiciach. Vyvíjam a prevádzkujem systémy nad meteorologickými dátami – od databázy a API cez web a mobilné aplikácie až po servery a ich bezpečnosť.
+              {t.profile}
             </p>
           </div>
 
@@ -221,54 +217,25 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               <div className="w-8 h-8 rounded-lg bg-amber-700 flex items-center justify-center">
                 <Briefcase className="w-4 h-4 text-white" />
               </div>
-              <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Pracovné skúsenosti</h2>
+              <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">{t.experienceTitle}</h2>
             </div>
             
             <div className="space-y-4">
-              {/* Job 1 */}
-              <div className="relative pl-4 border-l-2 border-amber-300">
-                <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-amber-700" />
-                <div className="flex justify-between items-start mb-1">
-                  <h3 className="text-xs font-bold text-amber-900">Softvérový vývojár / IT a kyberbezpečnosť</h3>
-                  <span className="text-[10px] text-stone-500 whitespace-nowrap ml-2">03/2023 – súčasnosť</span>
+              {t.jobs.map((job, index) => (
+                <div key={job.title} className="relative pl-4 border-l-2 border-amber-300">
+                  <div className={`absolute -left-[5px] top-1 w-2 h-2 rounded-full ${index === 0 ? "bg-amber-700" : "bg-amber-500"}`} />
+                  <div className="flex justify-between items-start mb-1">
+                    <h3 className="text-xs font-bold text-amber-900">{job.title}</h3>
+                    <span className="text-[10px] text-stone-500 whitespace-nowrap ml-2">{job.period}</span>
+                  </div>
+                  <p className="text-[10px] font-medium text-amber-700 mb-2">{job.company}</p>
+                  <ul className="text-[10px] text-stone-500 space-y-1">
+                    {job.bullets.map((bullet) => (
+                      <li key={bullet}>• {bullet}</li>
+                    ))}
+                  </ul>
                 </div>
-                <p className="text-[10px] font-medium text-amber-700 mb-2">CzechGlobe, Brno</p>
-                <ul className="text-[10px] text-stone-500 space-y-1">
-                  <li>• CzechGlobe Mapy – verejný mapový portál počasia a mobilná aplikácia pre Android a iOS: web, mobil, mapový backend aj vydávanie do obchodov.</li>
-                  <li>• Fluxprism a MeteoDBS – informačný systém pre meteostanice a nová databáza meraní.</li>
-                  <li>• Kyberbezpečnosť – odhalenie a forenzná analýza kompromitácií webových serverov, bezpečnostné audity a penetračné testovanie (Kali Linux, Burp Suite, Metasploit).</li>
-                  <li>• Infraštruktúra – FreeIPA, DNS, Rocky Linux, systemd, nginx, PostgreSQL, CI/CD.</li>
-                </ul>
-              </div>
-
-              {/* Job 2 */}
-              <div className="relative pl-4 border-l-2 border-amber-300">
-                <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-amber-500" />
-                <div className="flex justify-between items-start mb-1">
-                  <h3 className="text-xs font-bold text-amber-900">Full-stack vývojár – vlastné a klientské projekty</h3>
-                  <span className="text-[10px] text-stone-500 whitespace-nowrap ml-2">2020 – súčasnosť</span>
-                </div>
-                <p className="text-[10px] font-medium text-amber-700 mb-2">Samostatné projekty / GitHub portfólio</p>
-                <ul className="text-[10px] text-stone-500 space-y-1">
-                  <li>• Vývoj webov, interných nástrojov, e-shopov, mobilných aplikácií a prototypov.</li>
-                  <li>• Realizácia projektov od návrhu používateľského rozhrania cez implementáciu až po nasadenie.</li>
-                  <li>• Správa domén, hostingov, repozitárov a dlhodobá technická údržba.</li>
-                </ul>
-              </div>
-
-              {/* Job 3 */}
-              <div className="relative pl-4 border-l-2 border-amber-300">
-                <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-amber-500" />
-                <div className="flex justify-between items-start mb-1">
-                  <h3 className="text-xs font-bold text-amber-900">Lektor matematiky, fyziky a informatiky</h3>
-                  <span className="text-[10px] text-stone-500 whitespace-nowrap ml-2">09/2018 – súčasnosť</span>
-                </div>
-                <p className="text-[10px] font-medium text-amber-700 mb-2">Súkromne / EDUHELP Košice</p>
-                <ul className="text-[10px] text-stone-500 space-y-1">
-                  <li>• Individuálne doučovanie matematiky, fyziky a informatiky.</li>
-                  <li>• Vysvetľovanie technických tém jednoduchým a zrozumiteľným spôsobom.</li>
-                </ul>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -278,7 +245,7 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
               <div className="w-8 h-8 rounded-lg bg-amber-700 flex items-center justify-center">
                 <GraduationCap className="w-4 h-4 text-white" />
               </div>
-              <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Vzdelanie</h2>
+              <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">{t.educationTitle}</h2>
             </div>
             
             <div className="space-y-2">
@@ -288,9 +255,9 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
                   <span className="text-[10px] font-bold tracking-tight text-amber-800">UPJŠ</span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs font-bold text-amber-900">PhD. štúdium – Informatika</p>
-                  <p className="text-[10px] text-stone-600">UPJŠ Košice, Ústav informatiky</p>
-                  <p className="text-[10px] text-stone-400">2026 – súčasnosť • neurónové siete, vývoj AiS2, výučba</p>
+                  <p className="text-xs font-bold text-amber-900">{t.education.phd.title}</p>
+                  <p className="text-[10px] text-stone-600">{t.education.phd.school}</p>
+                  <p className="text-[10px] text-stone-400">{t.education.phd.detail}</p>
                 </div>
               </div>
 
@@ -307,10 +274,10 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
                   />
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs font-bold text-amber-900">Ing. – Softvérové inžinierstvo</p>
-                  <p className="text-[10px] text-stone-600">Masarykova univerzita, FI Brno</p>
+                  <p className="text-xs font-bold text-amber-900">{t.education.ing.title}</p>
+                  <p className="text-[10px] text-stone-600">{t.education.ing.school}</p>
                   <p className="text-[10px] text-stone-400 font-medium">
-                    2023 – 2025 • Štátnice a diplomová práca s hodnotením <span className="text-amber-600">prospel výborne</span>
+                    {t.education.ing.detail} <span className="text-amber-600">{t.education.ing.grade}</span>
                   </p>
                 </div>
               </div>
@@ -328,9 +295,9 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
                   />
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs font-bold text-amber-900">Bc. – Informatika</p>
-                  <p className="text-[10px] text-stone-600">Masarykova univerzita, FI Brno</p>
-                  <p className="text-[10px] text-stone-400">2020 – 2023</p>
+                  <p className="text-xs font-bold text-amber-900">{t.education.bc.title}</p>
+                  <p className="text-[10px] text-stone-600">{t.education.bc.school}</p>
+                  <p className="text-[10px] text-stone-400">{t.education.bc.detail}</p>
                 </div>
               </div>
 
@@ -347,9 +314,9 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
                   />
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs font-bold text-amber-900">Matematická trieda</p>
-                  <p className="text-[10px] text-stone-600">Gymnázium Poštová 9, Košice</p>
-                  <p className="text-[10px] text-stone-400">2016 – 2020</p>
+                  <p className="text-xs font-bold text-amber-900">{t.education.gymnasium.title}</p>
+                  <p className="text-[10px] text-stone-600">{t.education.gymnasium.school}</p>
+                  <p className="text-[10px] text-stone-400">{t.education.gymnasium.detail}</p>
                 </div>
               </div>
 
@@ -366,9 +333,9 @@ export function CVPage1({ pdfMode = false }: CVPage1Props) {
                   />
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs font-bold text-amber-900">Hudobné vzdelanie</p>
-                  <p className="text-[10px] text-stone-600">ZUŠ Krosnianska 6, Košice</p>
-                  <p className="text-[10px] text-stone-400">2008 – 2020 • Klavír, Akordeón</p>
+                  <p className="text-xs font-bold text-amber-900">{t.education.music.title}</p>
+                  <p className="text-[10px] text-stone-600">{t.education.music.school}</p>
+                  <p className="text-[10px] text-stone-400">{t.education.music.detail}</p>
                 </div>
               </div>
             </div>

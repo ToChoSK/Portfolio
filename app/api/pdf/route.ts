@@ -2,6 +2,7 @@ import { NextRequest } from "next/server"
 import chromium from "@sparticuz/chromium"
 import puppeteer, { type Browser, type LaunchOptions } from "puppeteer-core"
 import { existsSync } from "node:fs"
+import { defaultLocale, isLocale, pdfFileName } from "@/lib/cv/locales"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -46,7 +47,9 @@ async function launchBrowser(): Promise<Browser> {
 }
 
 export async function GET(request: NextRequest) {
-  const url = new URL("/", request.url)
+  const lang = request.nextUrl.searchParams.get("lang")
+  const locale = isLocale(lang) ? lang : defaultLocale
+  const url = new URL(`/${locale}`, request.url)
   url.searchParams.set("pdf", "1")
 
   const browser = await launchBrowser()
@@ -129,7 +132,7 @@ export async function GET(request: NextRequest) {
     return new Response(pdf, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="tomas-chovancak-cv.pdf"',
+        "Content-Disposition": `attachment; filename="${pdfFileName(locale)}"`,
         "Cache-Control": "no-store",
       },
     })

@@ -3,8 +3,10 @@
 import { ExternalLink, Layers, Map as MapIcon, ShieldCheck } from "lucide-react"
 import Image from "next/image"
 import { ProjectCard } from "@/components/cv/project-card"
+import type { CVContent } from "@/lib/cv/content"
 
 type CVPage3Props = {
+  content: CVContent["page3"]
   pdfMode?: boolean
 }
 
@@ -16,32 +18,7 @@ const mapLinks = [
   { label: "App Store", href: "https://apps.apple.com/cz/app/czechglobe-mapy/id6796352172" },
 ]
 
-const mapStats = [
-  { value: "15", label: "dátových vrstiev" },
-  { value: "~10 dní", label: "predpoveď počasia" },
-  { value: "3", label: "platformy: web, Android, iOS" },
-]
-
-const securityHighlights = [
-  {
-    title: "Reakcia na incidenty",
-    text: "Odhalenie a forenzná analýza kompromitácií verejných webových serverov: vstupný bod útoku, časová os a rozsah zásahu.",
-  },
-  {
-    title: "Rekonštrukcia útokov",
-    text: "Zostavenie celého priebehu automatizovaného útoku z logov reverznej proxy a kontrola integrity webových inštalácií.",
-  },
-  {
-    title: "Audit a prevencia",
-    text: "Bezpečnostný audit verejných webov, vystopovanie zdroja brute-force útokov na SSH a uzavretie cesty, ktorou prichádzali.",
-  },
-  {
-    title: "Identity a PKI",
-    text: "Správa FreeIPA, obnova certifikačnej autority, prihlasovanie aplikácií cez LDAP a HTTPS s OCSP staplingom.",
-  },
-]
-
-export function CVPage3({ pdfMode = false }: CVPage3Props) {
+export function CVPage3({ content: t, pdfMode = false }: CVPage3Props) {
   return (
     <div className="cv-page w-full md:w-[210mm] md:h-[297mm] bg-amber-50/50 shadow-2xl print:shadow-none overflow-hidden relative print:w-[210mm] print:h-[297mm]">
       {/* Subtle background pattern */}
@@ -55,8 +32,8 @@ export function CVPage3({ pdfMode = false }: CVPage3Props) {
       <div className="relative p-4 pt-10 pb-7 md:p-8 md:pb-24 print:h-full print:p-8 print:pb-24">
         {/* Header */}
         <div className="mb-5 pb-4 border-b border-amber-200">
-          <h1 className="text-2xl font-bold text-amber-900 tracking-tight">ĎALŠIE PROJEKTY V CZECHGLOBE</h1>
-          <p className="text-sm text-stone-500 mt-1">Novšie systémy z rokov 2025 – 2026: mapový portál, databáza meraní a bezpečnosť infraštruktúry.</p>
+          <h1 className="text-2xl font-bold text-amber-900 tracking-tight">{t.title}</h1>
+          <p className="text-sm text-stone-500 mt-1">{t.subtitle}</p>
         </div>
 
         {/* Map Portal */}
@@ -65,7 +42,7 @@ export function CVPage3({ pdfMode = false }: CVPage3Props) {
             <div className="w-8 h-8 rounded-lg bg-amber-700 flex items-center justify-center">
               <MapIcon className="w-4 h-4 text-white" />
             </div>
-            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Mapový portál</h2>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">{t.mapTitle}</h2>
           </div>
 
           {/* CzechGlobe Mapy - Featured */}
@@ -82,7 +59,7 @@ export function CVPage3({ pdfMode = false }: CVPage3Props) {
                 />
                 <div>
                   <h3 className="text-lg font-bold">CzechGlobe Mapy</h3>
-                  <p className="text-sm text-amber-300">Verejný mapový portál počasia a mobilná aplikácia</p>
+                  <p className="text-sm text-amber-300">{t.mapy.subtitle}</p>
                 </div>
               </div>
               <div className="px-3 py-1 bg-white/10 rounded-full text-[10px] font-medium whitespace-nowrap mt-2 md:mt-0">
@@ -90,10 +67,10 @@ export function CVPage3({ pdfMode = false }: CVPage3Props) {
               </div>
             </div>
             <p className="text-xs text-amber-100 leading-relaxed mb-4">
-              Verejný mapový portál s aktuálnym monitoringom počasia a približne desaťdňovou predpoveďou pre Česko: teplota, zrážky, radar, vietor, vlhkosť, oblačnosť a žiarenie na jednej časovej osi. Celý systém som navrhol a vyvinul – webovú mapu, mobilnú aplikáciu pre Android a iOS, mapový backend nad GeoServerom s automatickými importmi rastrových dát aj CI/CD s vydávaním do Google Play a App Store.
+              {t.mapy.description}
             </p>
             <div className="grid grid-cols-3 gap-2 mb-4">
-              {mapStats.map((stat) => (
+              {t.mapy.stats.map((stat) => (
                 <div key={stat.label} className="px-3 py-2 bg-white/10 rounded-lg">
                   <p className="text-lg font-bold leading-tight text-amber-300">{stat.value}</p>
                   <p className="text-[10px] text-amber-100">{stat.label}</p>
@@ -130,14 +107,14 @@ export function CVPage3({ pdfMode = false }: CVPage3Props) {
             <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
               <Layers className="w-4 h-4 text-amber-700" />
             </div>
-            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Interné systémy</h2>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">{t.internalTitle}</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <ProjectCard
               title="MeteoDBS"
-              subtitle="Databáza meteorologických meraní"
-              description="Nová generácia databázy meteorologických meraní: výber senzorov, grafy časových radov a streamované exporty aj gigabajtových dát. Prihlásenie cez FreeIPA a nasadenie s návratom pri chybe; aktuálne v skúšobnej prevádzke."
+              subtitle={t.meteodbs.subtitle}
+              description={t.meteodbs.description}
               tags={["Next.js", "MySQL", "FreeIPA / LDAP", "GitLab CI/CD"]}
               logo="/images/meteodbs-logo.png"
               pdfLogo={pdfImage("meteodbs-logo")}
@@ -145,8 +122,8 @@ export function CVPage3({ pdfMode = false }: CVPage3Props) {
             />
             <ProjectCard
               title="Cyber CzechGlobe"
-              subtitle="Bezpečnostný server a konzola"
-              description="Konzola pre vedenie a IT: stav siete a služieb a živá mapa serverov otvorených do internetu, poskladaná z pravidiel firewallu, reverznej proxy a inventára siete. Servery posielajú dáta samy, konzola nedrží žiadne prístupy k iným strojom."
+              subtitle={t.cyber.subtitle}
+              description={t.cyber.description}
               tags={["Next.js", "SQLite", "FreeIPA", "SELinux", "systemd"]}
               logo="/images/cyber-czechglobe-logo.png"
               pdfLogo={pdfImage("cyber-czechglobe-logo")}
@@ -161,12 +138,12 @@ export function CVPage3({ pdfMode = false }: CVPage3Props) {
             <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
               <ShieldCheck className="w-4 h-4 text-amber-700" />
             </div>
-            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Kyberbezpečnosť</h2>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">{t.securityTitle}</h2>
           </div>
 
           <div className="p-4 bg-white rounded-xl border border-amber-200">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
-              {securityHighlights.map((item) => (
+              {t.security.map((item) => (
                 <div key={item.title}>
                   <h4 className="text-[11px] font-bold text-amber-900 mb-0.5">{item.title}</h4>
                   <p className="text-[10px] text-stone-500 leading-relaxed">{item.text}</p>

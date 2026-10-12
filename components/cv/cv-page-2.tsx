@@ -3,14 +3,16 @@
 import { Star, ShoppingCart } from "lucide-react"
 import Image from "next/image"
 import { MiniProjectCard, ProjectCard } from "@/components/cv/project-card"
+import type { CVContent } from "@/lib/cv/content"
 
 type CVPage2Props = {
+  content: CVContent["page2"]
   pdfMode?: boolean
 }
 
 const pdfImage = (name: string) => `/images/pdf/${name}.webp`
 
-export function CVPage2({ pdfMode = false }: CVPage2Props) {
+export function CVPage2({ content: t, pdfMode = false }: CVPage2Props) {
   return (
     <div className="cv-page w-full md:w-[210mm] md:h-[297mm] bg-amber-50/50 shadow-2xl print:shadow-none overflow-hidden relative print:w-[210mm] print:h-[297mm]">
       {/* Subtle background pattern */}
@@ -24,8 +26,8 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
       <div className="relative p-4 pt-10 pb-7 md:p-8 md:pb-24 print:h-full print:p-8 print:pb-24">
         {/* Header */}
         <div className="mb-5 pb-4 border-b border-amber-200">
-          <h1 className="text-2xl font-bold text-amber-900 tracking-tight">PROJEKTOVÉ PORTFÓLIO</h1>
-          <p className="text-sm text-stone-500 mt-1">Výber realizovaných aplikácií, webov a projektov.</p>
+          <h1 className="text-2xl font-bold text-amber-900 tracking-tight">{t.title}</h1>
+          <p className="text-sm text-stone-500 mt-1">{t.subtitle}</p>
         </div>
 
         {/* Main Projects */}
@@ -34,7 +36,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
              <div className="w-8 h-8 rounded-lg bg-amber-700 flex items-center justify-center">
                <Star className="w-4 h-4 text-white" />
              </div>
-             <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Hlavné projekty</h2>
+             <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">{t.mainProjectsTitle}</h2>
            </div>
 
            {/* Fluxprism - Featured */}
@@ -51,15 +53,15 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
                  />
                  <div>
                    <h3 className="text-lg font-bold">Fluxprism</h3>
-                   <p className="text-sm text-amber-300">Interná firemná aplikácia pre CzechGlobe</p>
+                   <p className="text-sm text-amber-300">{t.fluxprism.subtitle}</p>
                  </div>
                </div>
                <div className="px-3 py-1 bg-white/10 rounded-full text-[10px] font-medium whitespace-nowrap mt-2 md:mt-0">
-                 Hlavný projekt
+                 {t.fluxprism.badge}
                </div>
              </div>
              <p className="text-xs text-amber-100 leading-relaxed mb-4">
-               Komplexný systém pre evidenciu environmentálnych meraní, meteorologických zariadení, lokalít, používateľov, rolí, úloh, súborov a auditných záznamov. Funguje 2 roky v ostrej prevádzke a obsluhuje pol miliardy meteorologických záznamov v databáze. Súčasťou systému je aj vizualizácia a prezentácia dát užívateľom
+               {t.fluxprism.description}
              </p>
              <div className="flex flex-wrap gap-2">
                {["TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "React", "Next.js", "Tailwind CSS", "Docker", "Rocky Linux"].map((tech) => (
@@ -75,8 +77,8 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
             <ProjectCard
               title="Slovenské ľudovky"
               url="slovenskeludovky.sk"
-              description="Folklórny projekt pre vyhľadávanie a prezentáciu slovenských ľudových piesní, prepájajúci webovú stránku, Android aplikáciu vydanú na Google Play a YouTube kanál s takmer miliónom pozretí."
-              tags={["React Native", "Google Play", "Obsah"]}
+              description={t.ludovky.description}
+              tags={["React Native", "Google Play", t.ludovky.tag]}
               logo="/images/slovenskeludovky-logo.png"
               pdfLogo={pdfImage("slovenskeludovky-logo")}
               pdfMode={pdfMode}
@@ -84,8 +86,8 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
             <ProjectCard
               title="Dotykáče"
               url="app.dotykace.com"
-              description="Realizácia projektového nápadu JAMU, interaktívna chatová aplikácia s vetveným dialógom, vizuálnym editorom konverzačných tokov, animáciami a responzívnym používateľským zážitkom."
-              tags={["Next.js", "Firestore", "Interaktívne UI"]}
+              description={t.dotykace.description}
+              tags={["Next.js", "Firestore", t.dotykace.tag]}
               logo="/images/dotykace-logo.png"
               pdfLogo={pdfImage("dotykace-logo")}
               pdfMode={pdfMode}
@@ -99,7 +101,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
             <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
               <Star className="w-4 h-4 text-amber-700" />
             </div>
-            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Hobby projekty</h2>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">{t.hobbyTitle}</h2>
           </div>
 
            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -107,7 +109,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
               title="SrandyPandy" 
               url="Google Play"
               href="https://play.google.com/store/apps/details?id=sk.tocho.srandypandy&pcampaignid=web_share"
-              description="Flutter aplikácia pre Android zameraná na vtipy" 
+              description={t.hobby.srandypandy}
               logo="/images/srandypandy-logo.png"
               pdfLogo={pdfImage("srandypandy-logo")}
               pdfMode={pdfMode}
@@ -116,7 +118,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
               title="akovybavit.eu" 
               url="akovybavit.eu" 
               href="https://akovybavit.eu"
-              description="Informačný web s praktickým obsahom" 
+              description={t.hobby.akovybavit}
               logo="/images/akovybavit-logo.png"
               pdfLogo={pdfImage("akovybavit-logo")}
               pdfMode={pdfMode}
@@ -125,7 +127,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
               title="Hroby slávnych" 
               url="hrobyslavnych.sk" 
               href="https://hrobyslavnych.sk"
-              description="Obsahový web - miesta pochovania slovenských historických osobností"
+              description={t.hobby.hrobyslavnych}
               logo="/images/hrobyslavnych-logo.png"
               pdfLogo={pdfImage("hrobyslavnych-logo")}
               pdfMode={pdfMode}
@@ -134,7 +136,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
               title="Šarišský slovník" 
               url="slovniksaris.eu" 
               href="https://slovniksaris.eu"
-              description="Regionálny slovníkový web" 
+              description={t.hobby.sarisskyslovnik}
               logo="/images/sarisskyslovnik-logo.png"
               pdfLogo={pdfImage("sarisskyslovnik-logo")}
               pdfMode={pdfMode}
@@ -143,16 +145,16 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
               title="Gromanka" 
               url="gromanka.eu" 
               href="https://gromanka.eu"
-              description="Prezentačný web OZ"
+              description={t.hobby.gromanka}
               logo="/images/gromanka-logo.png"
               pdfLogo={pdfImage("gromanka-logo")}
               pdfMode={pdfMode}
             />
             <MiniProjectCard 
-              title="YouTube kanál" 
+              title={t.hobby.youtubeTitle}
               url="Slovenské ľudovky" 
               href="https://www.youtube.com/@slovenskeludovky"
-              description="Folklórny kanál s ľudovými piesňami" 
+              description={t.hobby.youtube}
               icon="youtube"
             />
           </div>
@@ -164,7 +166,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
             <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
               <ShoppingCart className="w-4 h-4 text-amber-700" />
             </div>
-            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">Komerčné projekty</h2>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-amber-900">{t.commercialTitle}</h2>
           </div>
 
           <div className="p-4 bg-white rounded-xl border border-amber-200">
@@ -189,7 +191,7 @@ export function CVPage2({ pdfMode = false }: CVPage2Props) {
               ))}
             </div>
             <p className="text-[10px] text-stone-500 leading-relaxed">
-              Tieto projekty zahŕňajú návrh používateľského rozhrania, implementáciu, správu repozitárov, konfiguráciu domén, nasadenie, úpravy podľa požiadaviek klientov a dlhodobú technickú údržbu.
+              {t.commercialText}
             </p>
            </div>
          </div>
