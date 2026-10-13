@@ -31,12 +31,12 @@ export const en: CVContent = {
     role: "Full-stack developer / IT specialist / cybersecurity",
     profileTitle: "Profile",
     profile:
-      "Full-stack developer at CzechGlobe (since 03/2023) and PhD student in computer science at UPJŠ in Košice. I build and operate systems for meteorological data – from the database and API through web and mobile apps to the servers and their security.",
+      "Full-stack developer at CzechGlobe (since 03/2024) and PhD student in computer science at UPJŠ in Košice. I build and operate systems for meteorological data – from the database and API through web and mobile apps to the servers and their security.",
     experienceTitle: "Work experience",
     jobs: [
       {
         title: "Software developer / IT and cybersecurity",
-        period: "03/2023 – present",
+        period: "03/2024 – present",
         company: "CzechGlobe, Brno",
         bullets: [
           "CzechGlobe Mapy – public weather map portal and mobile app for Android and iOS: web, mobile, map backend and releases to the app stores.",

@@ -177,7 +177,7 @@ export function CVPage2({ content: t, pdfMode = false }: CVPage2Props) {
                 { label: "hlklima.eu", href: "https://hlklima.eu" },
                 { label: "chovancak.sk (e-shop)", href: "https://chovancak.sk" },
                 { label: "3E-vision.sk", href: "https://3e-vision.sk" },
-                { label: "satyrobiacloveka.sk", href: "https://satyrobiacloveka.sk" },
+                { label: "tpzvar.sk", href: "https://tpzvar.sk" },
               ].map((site) => (
                 <a
                   key={site.href}

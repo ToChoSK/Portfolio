@@ -31,12 +31,12 @@ export const cs: CVContent = {
     role: "Full-stack vývojář / IT specialista / kyberbezpečnost",
     profileTitle: "Profil",
     profile:
-      "Full-stack vývojář v CzechGlobe (od 03/2023) a doktorand informatiky na UPJŠ v Košicích. Vyvíjím a provozuji systémy nad meteorologickými daty – od databáze a API přes web a mobilní aplikace až po servery a jejich bezpečnost.",
+      "Full-stack vývojář v CzechGlobe (od 03/2024) a doktorand informatiky na UPJŠ v Košicích. Vyvíjím a provozuji systémy nad meteorologickými daty – od databáze a API přes web a mobilní aplikace až po servery a jejich bezpečnost.",
     experienceTitle: "Pracovní zkušenosti",
     jobs: [
       {
         title: "Softwarový vývojář / IT a kyberbezpečnost",
-        period: "03/2023 – současnost",
+        period: "03/2024 – současnost",
         company: "CzechGlobe, Brno",
         bullets: [
           "CzechGlobe Mapy – veřejný mapový portál počasí a mobilní aplikace pro Android a iOS: web, mobil, mapový backend i vydávání do obchodů.",
